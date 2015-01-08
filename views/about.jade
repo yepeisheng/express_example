@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  if (login!=null)
+    h1 Welcome! #{login['user.first_name']} #{login['user.surname']}
+  
+  h2 Form example
+  form(method='post', action="/about")
+    fieldset
+      legend Login
+      p
+        label First name
+        input(name='user.first_name')
+      p
+        label Last name
+        input(name='user.surname')
+      p
+        input(type='submit', value='Confirm')	  

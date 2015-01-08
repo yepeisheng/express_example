@@ -1,0 +1,38 @@
+mixin users(users)
+  ul
+    each user in users
+      li= user
+
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  section#wrapper
+    h2 Basic Structure
+    section
+      p
+        span This is a span within a p within a div!
+
+  - var name = "Peisheng Ye"
+  h1 Made by #{name}
+  
+  h1 The following is a loop sample:
+  - users = ['a','b'] 
+  mixin users(users)
+  
+  ul
+    - source = { firstName: 'Peisheng', lastName: 'Ye', contact: '123456789'}
+    - each value, key in source
+      li #{key}: #{value}
+  
+  - jsFlag = true
+  - if (jsFlag)
+    script(type="text/javascript").
+      alert('You are using javascript in Jade')
+  - else
+    p You are not using javascript in Jade.
+
+  h1 The following is the footer.
+  include includes/footer
