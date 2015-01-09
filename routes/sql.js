@@ -1,13 +1,10 @@
 var express = require('express');
-var sql = require('mysql');
+var mysql = require('mysql');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/:id', function(req, res) {
+router.get('/', function(req, res) {
 
-	res.writeHead(200, {
-		'content-Type' : 'text/plain'
-	});
 	
 	var connection = mysql.createConnection({
 		host : "toydb.cmviteue1lwt.ap-southeast-1.rds.amazonaws.com",
@@ -44,9 +41,10 @@ router.get('/:id', function(req, res) {
 	
 	connection.connect(function(err){
 	  if (err) {
-		res.end(err);
+		res.end(err.stack);
+	  } else {
+		res.end('connected!');
 	  }
-	  res.end('connected!');
 	});		
 	connection.end();
 });
