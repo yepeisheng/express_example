@@ -1,9 +1,12 @@
 var mysql = require('mysql');
+
 var connection = mysql.createConnection({
-	host : "toydb.cmviteue1lwt.ap-southeast-1.rds.amazonaws.com;dbname=toyDB",
+	host : "toydb.cmviteue1lwt.ap-southeast-1.rds.amazonaws.com",
+	database: "toyDB",
 	user : "peisheng",
 	password: "jpyps5218",
-	connectTimeout: 5000,
+	port : 3306,
+	connectTimeout: 99999999999999999999999,
 	ssl : {
 	  ca : 	"-----BEGIN CERTIFICATE-----"+
 			"MIIDQzCCAqygAwIBAgIJAOd1tlfiGoEoMA0GCSqGSIb3DQEBBQUAMHUxCzAJBgNV" +
@@ -28,11 +31,27 @@ var connection = mysql.createConnection({
 	}
 });
 
+var createTable = "CREATE TABLE persion (id int, firstname varchar(255), lastname varchar(255));";
+
 connection.connect(function(err){
   if (err) {
-    console.error('error connection:' + err.stack);
+    throw err;
   }
   console.log('Connected as id:' + connection.threadId);
 });
 
-connection.end();
+connection.query(createTable, function(error, result){
+  if (error) {
+	console.log(error);
+  }
+  console.log("queried");
+});
+
+//connection.connect(function(err){
+//  if (err) {
+//    throw err;
+//  }
+//  console.log('Connected as id:' + connection.threadId);
+//});
+
+//connection.end();
