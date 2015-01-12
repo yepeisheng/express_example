@@ -5,6 +5,11 @@ block content
     a(href="/task/new", class='btn btn-primary') +
   br
   br
+  -if(typeof messages != 'undefined')
+    -if(messages.info)
+      .message.info
+        span= messages.info
+  
   -if (docs.length)
     -var index= 1
     table.table.table-striped
@@ -15,12 +20,10 @@ block content
           each task in docs
             tr
               td(style="width:5%;")
-                form(method='post', action='/task/'+task.id)
-                  input(name='_method', value='DELETE', type='hidden')
-                  button.close(type='button')
-                    span(aria-hidden="true") &times;			
-              td #{index}
-                &nbsp
+                form(method='post', action='/task/#{task.id}/delete')
+                  button.close(type='submit')
+                    span(aria-hidden="true") &times;
+              td #{index} &nbsp
                 a.btn(href="/task/#{task.id}/edit") Edit
               td #{task.task}
                 
