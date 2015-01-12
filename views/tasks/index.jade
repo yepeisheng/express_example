@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  h1 Your Tasks &nbsp
+    a(href="/task/new", class='btn btn-primary') +
+  br
+  br
+  -if (docs.length)
+    -var index= 1
+    table.table.table-striped
+      tr
+        th Delete
+        th #       
+        th Task
+          each task in docs
+            tr
+              td(style="width:5%;")
+                form(method='post', action='/task/'+task.id)
+                  input(name='_method', value='DELETE', type='hidden')
+                  button.close(type='button')
+                    span(aria-hidden="true") &times;			
+              td #{index}
+                &nbsp
+                a.btn(href="/task/#{task.id}/edit") Edit
+              td #{task.task}
+                
+            -index= index + 1        
+  -else
+    p You don't have any tasks!  

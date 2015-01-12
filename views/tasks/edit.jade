@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  h1 Edit task view
+  
+  form(method='post', action='/task/edit/' + task.id)
+    fieldset
+      legend Editing Task
+      div.clearfix
+        label Task &nbsp
+          input(name='taskName', class='xlarge', value='#{task.task}')
+      div.actions
+        input(type='submit', value='Save', class='btn btn-primary')
+        &nbsp
+        a(href="/task", class='btn') Cancel
