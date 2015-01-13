@@ -9,6 +9,9 @@ block content
       div.clearfix
         label Task &nbsp
           input(name='taskName', class='xlarge', value='#{task.task}')
+        label Detail &nbsp
+          -var detail= task.detail==undefined ? "" : task.detail
+          input(name='taskDetail', class='xlarge', value='#{detail}')
       div.actions
         input(type='submit', value='Save', class='btn btn-primary')
         &nbsp

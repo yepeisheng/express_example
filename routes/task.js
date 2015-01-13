@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://peisheng:jpyps5218@ec2-54-169-141-38.ap-southeast-1.compute.amazonaws.com/db');
 
 var TaskSchema = mongoose.Schema({
-	  task: { type: String, validate: [validatePresenceOf, 'a task is required']}
+	  task: { type: String, validate: [validatePresenceOf, 'a task is required']},
+	  detail: String
     }, {collection: "task"});
 
 var Task = mongoose.model('Task', TaskSchema);
@@ -12,10 +13,14 @@ var Task = mongoose.model('Task', TaskSchema);
 // Get Request to the page to view all tasks.
 router.get('/', function(req, res) {
   Task.find(function(err, docs){
-      res.render('tasks/index', {
-        title: "Todos index view",
-        docs: docs
-      });
+      if (!err) {
+        res.render('tasks/index', {
+          title: "Todos index view",
+          docs: docs
+        });
+	  } else {
+	    console.log('Connection fail');
+	  }
     });
   //db.on('error', renderNoTask(req, res));
  
@@ -32,14 +37,14 @@ router.get('/new', function(req, res){
 
 // Post Request to save a new task.
 router.post('/', function(req, res) {
-  var task = new Task({ task: req.body.taskName});
+  var task = new Task({ task: req.body.taskName, detail: req.body.taskDetail});
   task.save(function(err){
     if (!err) {
       req.flash('info', 'Task Created!');
-	    res.redirect('/task');
-	  } else {
-	    res.redirect('/task/new');
-	  }
+	  res.redirect('/task');
+	} else {
+	  res.redirect('/task/new');
+	}
   });
 });
 
@@ -61,6 +66,7 @@ router.get('/:id/edit', function(req,res){
 router.post('/edit/:id', function(req, res){
   Task.findById(req.params.id, function(err, doc){
     doc.task = req.body.taskName;
+	doc.detail = req.body.taskDetail;
 	doc.save(function(err){
 	  res.redirect('/task/');
 	});

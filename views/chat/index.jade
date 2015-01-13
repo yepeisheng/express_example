@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.css')
+    script(src='/socket.io/socket.io.js')
+    script(src='/javascripts/chat/chat.js')
+    body
+      br
+      br
+      br
+      br
+      br
+      br
+      br
+      br      
+      form#set-nickname.form-inline(style='text-align:center;')
+        div.form-group
+          div.input-group
+            div.input-group-addon Nickname
+            input#nickNameInput.form-control(name='nickName', placeHolder='nickname')
+        button.btn.btn-primary(onclick='submitName()')  Confirm

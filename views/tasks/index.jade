@@ -17,6 +17,7 @@ block content
         th Delete
         th #       
         th Task
+        th Details
           each task in docs
             tr
               td(style="width:5%;")
@@ -26,7 +27,7 @@ block content
               td #{index} &nbsp
                 a.btn(href="/task/#{task.id}/edit") Edit
               td #{task.task}
-                
+              td #{task.detail}    
             -index= index + 1        
   -else
     p You don't have any tasks!  

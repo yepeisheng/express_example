@@ -1,7 +1,7 @@
 extends layout
 
 block content
-
+  
   if (login!=null)
     h1 Welcome! #{login['user.first_name']} #{login['user.surname']}
   
@@ -15,5 +15,5 @@ block content
       p
         label Last name
         input(name='user.surname')
-      p
-        input(type='submit', value='Confirm')	  
+      
+      input(type='submit', value='Confirm')	  

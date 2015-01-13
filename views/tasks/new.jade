@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
+  
   h1 New task view
   
   form(method= 'post', action='/task')
@@ -9,6 +10,8 @@ block content
       div.clearfix
         label Task &nbsp
           input(name='taskName', class='xlarge')
+        label Detail &nbsp
+          input(name='taskDetail', class='xlarge')
     div.actions
       input(type='submit', value='Save', class='btn btn-primary')
       &nbsp      
