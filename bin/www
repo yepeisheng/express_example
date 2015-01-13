@@ -34,6 +34,7 @@ io.sockets.on('connection', function(socket) {
 	console.log(nicknames.length);
     for (i=0; i<nicknames.length; i++) {
 	  if (nicknames[i] == data){
+	    console.log('aaa');
 	    socket.emit('repeatedName', 'The nickname is repeated!');
 		return;
       }
@@ -43,7 +44,6 @@ io.sockets.on('connection', function(socket) {
   });
   
   socket.on('disconnect', function() {
-    count--;
 	socket.broadcast.emit('users', {number: count});
 	console.log('------ user disconnected');
   });
