@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title= 'Nickname Management'
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/javascripts/nickManage.js')
+    body
+
+      h1 Nickname Management
+      
+      form#set-nickname
+        label(for='nickname') Nickname: 
+        input#nickname-input(type='text') 
+        input(type='submit')

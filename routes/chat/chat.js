@@ -8,6 +8,10 @@ router.get('/', function(req, res) {
   res.render('chat/index');
 });
 
+router.get('/nickManage', function(req, res) {
+  res.render('nickManage');
+})
+
 // Get Post to join chating.
 
 module.exports = router;
